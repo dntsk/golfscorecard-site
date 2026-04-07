@@ -7,10 +7,13 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
         /* Header */
-        .site-header { border-bottom: 1px solid #E9ECEF; padding: 16px 24px; }
-        .header-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-        .logo { text-decoration: none; color: #2D6A4F; font-weight: 700; font-size: 1rem; }
+        .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid #E9ECEF; }
+        .header-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+        .header-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .header-brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+        .header-brand span { font-size: 17px; font-weight: 600; color: #1a1a2e; letter-spacing: -0.3px; }
         .content { max-width: 720px; margin: 0 auto; padding: 24px; }
         h1 { color: #2D6A4F; }
         h2 { color: #40916C; margin-top: 2em; }
@@ -32,7 +35,10 @@
     <!-- Header -->
     <header class="site-header">
         <div class="header-inner">
-            <a href="/" class="logo">Golf Scorecard</a>
+            <a href="/" class="header-brand">
+                <img src="/icon.png" alt="Golf Scorecard icon" />
+                <span>Golf Scorecard</span>
+            </a>
         </div>
     </header>
 

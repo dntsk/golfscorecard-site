@@ -14,6 +14,13 @@
         .header-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
         .header-brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
         .header-brand span { font-size: 17px; font-weight: 600; color: #1a1a2e; letter-spacing: -0.3px; }
+        /* Language switcher */
+        .lang-switcher { display: flex; gap: 4px; align-items: center; }
+        .lang-btn { background: none; border: none; cursor: pointer; font-size: 0.875rem; font-family: inherit; color: #6C757D; padding: 4px 6px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+        .lang-btn:hover { background: #F8F9FA; color: #1A1A2E; }
+        .lang-btn.active { color: #2D6A4F; font-weight: 600; }
+        .lang-sep { color: #DEE2E6; font-size: 0.875rem; user-select: none; }
+        /* Content */
         .content { max-width: 720px; margin: 0 auto; padding: 24px; }
         h1 { color: #2D6A4F; }
         h2 { color: #40916C; margin-top: 2em; }
@@ -32,111 +39,274 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with logo and language switcher -->
     <header class="site-header">
         <div class="header-inner">
             <a href="/" class="header-brand">
                 <img src="/icon.png" alt="Golf Scorecard icon" />
                 <span>Golf Scorecard</span>
             </a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+                <span class="lang-sep">|</span>
+                <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+            </div>
         </div>
     </header>
 
     <div class="content">
-    <h1>Privacy Policy</h1>
-    <p class="date">Last updated: April 6, 2026</p>
+        <h1 data-en="Privacy Policy"
+            data-ru="Политика конфиденциальности"></h1>
+        <p class="date"
+           data-en="Last updated: April 6, 2026"
+           data-ru="Последнее обновление: 6 апреля 2026"></p>
 
-    <h2>Overview</h2>
-    <p>Golf Scorecard ("the App") is a mobile application for tracking golf scores, developed by DNTSK. We respect your privacy and are committed to protecting your personal data. This policy describes what data is collected, how it is used, and your rights regarding that data.</p>
+        <h2 data-en="Overview"
+            data-ru="Обзор"></h2>
+        <p data-en='Golf Scorecard ("the App") is a mobile application for tracking golf scores, developed by DNTSK. We respect your privacy and are committed to protecting your personal data. This policy describes what data is collected, how it is used, and your rights regarding that data.'
+           data-ru='Golf Scorecard («Приложение») — мобильное приложение для ведения счёта в гольфе, разработанное DNTSK. Мы уважаем вашу конфиденциальность и стремимся защитить ваши персональные данные. Эта политика описывает, какие данные собираются, как они используются и какие у вас есть права.'></p>
 
-    <h2>Data Stored on Your Device</h2>
-    <p>The App stores all your golf data locally on your device. <strong>We do not collect, transmit, or store your personal data on any server.</strong> The following data is stored only on your device:</p>
-    <ul>
-        <li>Golf round data (dates, scores, hole pars)</li>
-        <li>Player names</li>
-        <li>Course names</li>
-        <li>App preferences (language setting)</li>
-    </ul>
-    <p>This data is never transmitted to our servers or any third party. Deleting the App will permanently remove all locally stored data.</p>
+        <h2 data-en="Data Stored on Your Device"
+            data-ru="Данные на вашем устройстве"></h2>
+        <p data-en="The App stores all your golf data locally on your device."
+           data-ru="Приложение хранит все ваши данные о гольфе локально на устройстве."></p>
+        <!-- This paragraph uses innerHTML for the <strong> tag -->
+        <p class="i18n-html"
+           data-en="<strong>We do not collect, transmit, or store your personal data on any server.</strong> The following data is stored only on your device:"
+           data-ru="<strong>Мы не собираем, не передаём и не храним ваши персональные данные на каком-либо сервере.</strong> На вашем устройстве хранятся только следующие данные:"></p>
+        <ul>
+            <li data-en="Golf round data (dates, scores, hole pars)"
+                data-ru="Данные раундов (даты, счёт, par лунок)"></li>
+            <li data-en="Player names"
+                data-ru="Имена игроков"></li>
+            <li data-en="Course names"
+                data-ru="Названия полей"></li>
+            <li data-en="App preferences (language setting)"
+                data-ru="Настройки приложения (язык)"></li>
+        </ul>
+        <p data-en="This data is never transmitted to our servers or any third party. Deleting the App will permanently remove all locally stored data."
+           data-ru="Эти данные никогда не передаются на наши серверы или третьим лицам. Удаление приложения безвозвратно удалит все локальные данные."></p>
 
-    <h2>Third-Party Advertising</h2>
-    <p>The App uses <strong>Appodeal</strong>, a third-party advertising mediation platform, to display ads. By using the App, you acknowledge that Appodeal and its advertising network partners act as data controllers for the data they collect through their SDKs.</p>
+        <h2 data-en="Third-Party Advertising"
+            data-ru="Сторонняя реклама"></h2>
+        <!-- This paragraph uses innerHTML for the <strong> tag -->
+        <p class="i18n-html"
+           data-en="The App uses <strong>Appodeal</strong>, a third-party advertising mediation platform, to display ads. By using the App, you acknowledge that Appodeal and its advertising network partners act as data controllers for the data they collect through their SDKs."
+           data-ru="Приложение использует <strong>Appodeal</strong> — стороннюю рекламную платформу для показа рекламы. Используя приложение, вы признаёте, что Appodeal и его рекламные партнёры являются операторами данных, которые они собирают через свои SDK."></p>
 
-    <h3>Data Collected by Advertising SDKs</h3>
-    <p>Appodeal and its partner ad networks may collect the following data for ad personalization, delivery, and measurement:</p>
-    <table>
-        <tr><th>Data Type</th><th>Purpose</th></tr>
-        <tr><td>Advertising identifier (IDFA)</td><td>Ad personalization and frequency capping (with your consent)</td></tr>
-        <tr><td>IP address</td><td>General location for ad targeting, fraud prevention</td></tr>
-        <tr><td>Device information (model, OS version, screen size)</td><td>Ad format selection and compatibility</td></tr>
-        <tr><td>General location (country/region)</td><td>Region-appropriate ad delivery</td></tr>
-        <tr><td>Ad interaction data (impressions, clicks)</td><td>Ad performance measurement</td></tr>
-        <tr><td>App usage data (session duration)</td><td>Ad optimization</td></tr>
-    </table>
+        <h3 data-en="Data Collected by Advertising SDKs"
+            data-ru="Данные, собираемые рекламными SDK"></h3>
+        <p data-en="Appodeal and its partner ad networks may collect the following data for ad personalization, delivery, and measurement:"
+           data-ru="Appodeal и его рекламные партнёры могут собирать следующие данные для персонализации, показа и оценки эффективности рекламы:"></p>
+        <table>
+            <tr>
+                <th data-en="Data Type" data-ru="Тип данных"></th>
+                <th data-en="Purpose" data-ru="Назначение"></th>
+            </tr>
+            <tr>
+                <td data-en="Advertising identifier (IDFA)" data-ru="Рекламный идентификатор (IDFA)"></td>
+                <td data-en="Ad personalization and frequency capping (with your consent)" data-ru="Персонализация рекламы и ограничение частоты (с вашего согласия)"></td>
+            </tr>
+            <tr>
+                <td data-en="IP address" data-ru="IP-адрес"></td>
+                <td data-en="General location for ad targeting, fraud prevention" data-ru="Общее местоположение для таргетинга, предотвращение мошенничества"></td>
+            </tr>
+            <tr>
+                <td data-en="Device information (model, OS version, screen size)" data-ru="Информация об устройстве (модель, версия ОС, размер экрана)"></td>
+                <td data-en="Ad format selection and compatibility" data-ru="Выбор формата рекламы и совместимость"></td>
+            </tr>
+            <tr>
+                <td data-en="General location (country/region)" data-ru="Общее местоположение (страна/регион)"></td>
+                <td data-en="Region-appropriate ad delivery" data-ru="Показ рекламы, соответствующей региону"></td>
+            </tr>
+            <tr>
+                <td data-en="Ad interaction data (impressions, clicks)" data-ru="Данные взаимодействия (показы, клики)"></td>
+                <td data-en="Ad performance measurement" data-ru="Измерение эффективности рекламы"></td>
+            </tr>
+            <tr>
+                <td data-en="App usage data (session duration)" data-ru="Данные использования (длительность сессий)"></td>
+                <td data-en="Ad optimization" data-ru="Оптимизация рекламы"></td>
+            </tr>
+        </table>
 
-    <h3>Third-Party Ad Network Partners</h3>
-    <p>Appodeal may share data with the following ad network partners. Each operates under their own privacy policy:</p>
-    <ul>
-        <li>Appodeal — <a href="https://www.appodeal.com/privacy-policy">Privacy Policy</a></li>
-        <li>BidMachine — <a href="https://bidmachine.io/privacy-policy/">Privacy Policy</a></li>
-        <li>Meta Audience Network — <a href="https://www.facebook.com/privacy/policy/">Privacy Policy</a></li>
-        <li>Unity Ads — <a href="https://unity.com/legal/privacy-policy">Privacy Policy</a></li>
-        <li>AppLovin — <a href="https://www.applovin.com/privacy/">Privacy Policy</a></li>
-        <li>ironSource — <a href="https://developers.is.com/ironsource-mobile/air/ironsource-mobile-privacy-policy/">Privacy Policy</a></li>
-        <li>Mintegral — <a href="https://www.mintegral.com/en/privacy/">Privacy Policy</a></li>
-        <li>Vungle/Liftoff — <a href="https://vungle.com/privacy/">Privacy Policy</a></li>
-        <li>InMobi — <a href="https://www.inmobi.com/privacy-policy">Privacy Policy</a></li>
-        <li>DT Exchange — <a href="https://www.digitalturbine.com/privacy-policy/">Privacy Policy</a></li>
-        <li>Yandex Ads — <a href="https://yandex.com/legal/confidential/">Privacy Policy</a></li>
-        <li>VK Ads — <a href="https://vk.com/privacy">Privacy Policy</a></li>
-    </ul>
+        <h3 data-en="Third-Party Ad Network Partners"
+            data-ru="Сторонние рекламные партнёры"></h3>
+        <p data-en="Appodeal may share data with the following ad network partners. Each operates under their own privacy policy:"
+           data-ru="Appodeal может передавать данные следующим рекламным партнёрам. Каждый действует в соответствии со своей политикой конфиденциальности:"></p>
+        <ul>
+            <li>Appodeal — <a href="https://www.appodeal.com/privacy-policy"
+                              data-en="Privacy Policy"
+                              data-ru="Политика конфиденциальности"></a></li>
+            <li>BidMachine — <a href="https://bidmachine.io/privacy-policy/"
+                                data-en="Privacy Policy"
+                                data-ru="Политика конфиденциальности"></a></li>
+            <li>Meta Audience Network — <a href="https://www.facebook.com/privacy/policy/"
+                                           data-en="Privacy Policy"
+                                           data-ru="Политика конфиденциальности"></a></li>
+            <li>Unity Ads — <a href="https://unity.com/legal/privacy-policy"
+                               data-en="Privacy Policy"
+                               data-ru="Политика конфиденциальности"></a></li>
+            <li>AppLovin — <a href="https://www.applovin.com/privacy/"
+                              data-en="Privacy Policy"
+                              data-ru="Политика конфиденциальности"></a></li>
+            <li>ironSource — <a href="https://developers.is.com/ironsource-mobile/air/ironsource-mobile-privacy-policy/"
+                                data-en="Privacy Policy"
+                                data-ru="Политика конфиденциальности"></a></li>
+            <li>Mintegral — <a href="https://www.mintegral.com/en/privacy/"
+                               data-en="Privacy Policy"
+                               data-ru="Политика конфиденциальности"></a></li>
+            <li>Vungle/Liftoff — <a href="https://vungle.com/privacy/"
+                                    data-en="Privacy Policy"
+                                    data-ru="Политика конфиденциальности"></a></li>
+            <li>InMobi — <a href="https://www.inmobi.com/privacy-policy"
+                            data-en="Privacy Policy"
+                            data-ru="Политика конфиденциальности"></a></li>
+            <li>DT Exchange — <a href="https://www.digitalturbine.com/privacy-policy/"
+                                 data-en="Privacy Policy"
+                                 data-ru="Политика конфиденциальности"></a></li>
+            <li>Yandex Ads — <a href="https://yandex.com/legal/confidential/"
+                                data-en="Privacy Policy"
+                                data-ru="Политика конфиденциальности"></a></li>
+            <li>VK Ads — <a href="https://vk.com/privacy"
+                            data-en="Privacy Policy"
+                            data-ru="Политика конфиденциальности"></a></li>
+        </ul>
 
-    <h2>App Tracking Transparency (iOS)</h2>
-    <p>On iOS 14.5 and later, the App requests your explicit permission via Apple's App Tracking Transparency (ATT) framework before allowing ad networks to access your device's advertising identifier (IDFA) for tracking across apps and websites owned by other companies.</p>
-    <p>You can change your tracking preference at any time: <strong>Settings → Privacy & Security → Tracking</strong>.</p>
-    <p>If you deny tracking, ads will still be shown but they will not be personalized based on your activity in other apps.</p>
+        <h2 data-en="App Tracking Transparency (iOS)"
+            data-ru="App Tracking Transparency (iOS)"></h2>
+        <p data-en="On iOS 14.5 and later, the App requests your explicit permission via Apple's App Tracking Transparency (ATT) framework before allowing ad networks to access your device's advertising identifier (IDFA) for tracking across apps and websites owned by other companies."
+           data-ru="В iOS 14.5 и новее приложение запрашивает ваше явное разрешение через Apple App Tracking Transparency (ATT), прежде чем позволить рекламным сетям получить доступ к рекламному идентификатору (IDFA) для отслеживания между приложениями и сайтами других компаний."></p>
+        <!-- This paragraph uses innerHTML for the <strong> tag -->
+        <p class="i18n-html"
+           data-en="You can change your tracking preference at any time: <strong>Settings → Privacy &amp; Security → Tracking</strong>."
+           data-ru="Вы можете изменить настройки отслеживания в любое время: <strong>Настройки → Конфиденциальность и безопасность → Отслеживание</strong>."></p>
+        <p data-en="If you deny tracking, ads will still be shown but they will not be personalized based on your activity in other apps."
+           data-ru="Если вы откажетесь от отслеживания, реклама всё равно будет показываться, но не будет персонализирована на основе вашей активности в других приложениях."></p>
 
-    <h2>GDPR (European Economic Area, UK, Switzerland)</h2>
-    <p>If you are located in the EEA, UK, or Switzerland, you have the following rights under the General Data Protection Regulation:</p>
-    <ul>
-        <li><strong>Right to access</strong> — request what data is held about you</li>
-        <li><strong>Right to deletion</strong> — request deletion of your data</li>
-        <li><strong>Right to object</strong> — object to data processing for advertising</li>
-        <li><strong>Right to withdraw consent</strong> — withdraw previously given consent at any time</li>
-    </ul>
-    <p>The App uses Appodeal's built-in Consent Management Platform (Stack Consent Manager) to collect and manage your consent for data processing in GDPR regions. A consent dialog will be shown on first use if required by your region.</p>
-    <p>To exercise your rights regarding data collected by ad networks, please contact the respective ad network directly using the links above, or contact us and we will assist you.</p>
+        <h2 data-en="GDPR (European Economic Area, UK, Switzerland)"
+            data-ru="GDPR (Европейская экономическая зона, Великобритания, Швейцария)"></h2>
+        <p data-en="If you are located in the EEA, UK, or Switzerland, you have the following rights under the General Data Protection Regulation:"
+           data-ru="Если вы находитесь в ЕЭЗ, Великобритании или Швейцарии, у вас есть следующие права в рамках GDPR:"></p>
+        <ul>
+            <!-- Each list item uses innerHTML for the <strong> tag -->
+            <li class="i18n-html"
+                data-en="<strong>Right to access</strong> — request what data is held about you"
+                data-ru="<strong>Право на доступ</strong> — запросить, какие данные о вас хранятся"></li>
+            <li class="i18n-html"
+                data-en="<strong>Right to deletion</strong> — request deletion of your data"
+                data-ru="<strong>Право на удаление</strong> — запросить удаление ваших данных"></li>
+            <li class="i18n-html"
+                data-en="<strong>Right to object</strong> — object to data processing for advertising"
+                data-ru="<strong>Право на возражение</strong> — возразить против обработки данных для рекламы"></li>
+            <li class="i18n-html"
+                data-en="<strong>Right to withdraw consent</strong> — withdraw previously given consent at any time"
+                data-ru="<strong>Право на отзыв согласия</strong> — отозвать ранее данное согласие в любое время"></li>
+        </ul>
+        <p data-en="The App uses Appodeal's built-in Consent Management Platform (Stack Consent Manager) to collect and manage your consent for data processing in GDPR regions. A consent dialog will be shown on first use if required by your region."
+           data-ru="Приложение использует встроенную платформу управления согласием Appodeal (Stack Consent Manager) для сбора и управления вашим согласием на обработку данных в регионах GDPR. Диалог согласия будет показан при первом использовании, если этого требует ваш регион."></p>
+        <p data-en="To exercise your rights regarding data collected by ad networks, please contact the respective ad network directly using the links above, or contact us and we will assist you."
+           data-ru="Для реализации ваших прав в отношении данных, собранных рекламными сетями, обратитесь непосредственно к соответствующей рекламной сети по ссылкам выше или свяжитесь с нами, и мы поможем."></p>
 
-    <h2>CCPA (California, USA)</h2>
-    <p>If you are a California resident, the California Consumer Privacy Act (CCPA) provides you with the right to:</p>
-    <ul>
-        <li>Know what personal information is collected</li>
-        <li>Request deletion of your personal information</li>
-        <li>Opt out of the sale of personal information</li>
-    </ul>
-    <p>The App itself does not sell personal information. However, the use of advertising identifiers by ad networks may constitute a "sale" under CCPA. You may opt out by denying tracking permission when prompted, or via device settings.</p>
+        <h2 data-en="CCPA (California, USA)"
+            data-ru="CCPA (Калифорния, США)"></h2>
+        <p data-en="If you are a California resident, the California Consumer Privacy Act (CCPA) provides you with the right to:"
+           data-ru="Если вы являетесь резидентом Калифорнии, Закон о защите прав потребителей Калифорнии (CCPA) предоставляет вам право:"></p>
+        <ul>
+            <li data-en="Know what personal information is collected"
+                data-ru="Знать, какая персональная информация собирается"></li>
+            <li data-en="Request deletion of your personal information"
+                data-ru="Запросить удаление вашей персональной информации"></li>
+            <li data-en="Opt out of the sale of personal information"
+                data-ru="Отказаться от продажи персональной информации"></li>
+        </ul>
+        <p data-en='The App itself does not sell personal information. However, the use of advertising identifiers by ad networks may constitute a "sale" under CCPA. You may opt out by denying tracking permission when prompted, or via device settings.'
+           data-ru='Приложение не продаёт персональную информацию. Однако использование рекламных идентификаторов рекламными сетями может считаться «продажей» в рамках CCPA. Вы можете отказаться, запретив отслеживание при запросе или через настройки устройства.'></p>
 
-    <h2>Data Retention</h2>
-    <p>Local data on your device is retained until you delete it or uninstall the App. Data collected by third-party ad networks is retained according to their respective privacy policies.</p>
+        <h2 data-en="Data Retention"
+            data-ru="Хранение данных"></h2>
+        <p data-en="Local data on your device is retained until you delete it or uninstall the App. Data collected by third-party ad networks is retained according to their respective privacy policies."
+           data-ru="Локальные данные на вашем устройстве хранятся, пока вы их не удалите или не удалите приложение. Данные, собранные сторонними рекламными сетями, хранятся в соответствии с их политиками конфиденциальности."></p>
 
-    <h2>Children's Privacy</h2>
-    <p>The App is not directed at children under the age of 13 (or under 16 in the EEA). We do not knowingly collect personal information from children. If you believe a child has provided personal information through the ad networks, please contact us.</p>
+        <h2 data-en="Children's Privacy"
+            data-ru="Конфиденциальность детей"></h2>
+        <p data-en="The App is not directed at children under the age of 13 (or under 16 in the EEA). We do not knowingly collect personal information from children. If you believe a child has provided personal information through the ad networks, please contact us."
+           data-ru="Приложение не предназначено для детей младше 13 лет (или младше 16 в ЕЭЗ). Мы сознательно не собираем персональную информацию детей. Если вы считаете, что ребёнок предоставил персональную информацию через рекламные сети, свяжитесь с нами."></p>
 
-    <h2>Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated "Last updated" date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+        <h2 data-en="Changes to This Policy"
+            data-ru="Изменения в политике"></h2>
+        <p data-en='We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated "Last updated" date. Continued use of the App after changes constitutes acceptance of the updated policy.'
+           data-ru="Мы можем обновлять эту Политику конфиденциальности время от времени. Изменения будут отражены на этой странице с обновлённой датой. Продолжение использования приложения после изменений означает принятие обновлённой политики."></p>
 
-    <h2>Contact</h2>
-    <p>If you have questions about this Privacy Policy or wish to exercise your data rights, contact us at:</p>
-    <p>Email: <a href="mailto:info@dntsk.dev">info@dntsk.dev</a></p>
+        <h2 data-en="Contact"
+            data-ru="Контакты"></h2>
+        <p data-en="If you have questions about this Privacy Policy or wish to exercise your data rights, contact us at:"
+           data-ru="Если у вас есть вопросы об этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами:"></p>
+        <p>Email: <a href="mailto:info@dntsk.dev">info@dntsk.dev</a></p>
     </div>
 
     <!-- Footer -->
     <footer class="site-footer">
         <div>
-            <a href="/">Home</a>
-            <a href="/support">Support</a>
+            <a href="/"
+               data-en="Home"
+               data-ru="Главная"></a>
+            <a href="/support"
+               data-en="Support"
+               data-ru="Поддержка"></a>
         </div>
         <p class="footer-copy">© 2026 Golf Scorecard</p>
     </footer>
+
+    <script>
+        // Supported languages
+        var LANGS = ['en', 'ru'];
+        var DEFAULT_LANG = 'en';
+
+        // Apply language to all translatable elements
+        function applyLang(lang) {
+            // Plain text elements
+            var els = document.querySelectorAll('[data-en]');
+            els.forEach(function(el) {
+                var text = el.getAttribute('data-' + lang);
+                if (!text) return;
+                // Use innerHTML for elements that contain markup
+                if (el.classList.contains('i18n-html')) {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            // Update active button state
+            LANGS.forEach(function(l) {
+                var btn = document.getElementById('btn-' + l);
+                if (btn) btn.classList.toggle('active', l === lang);
+            });
+
+            // Update html lang attribute for accessibility
+            document.documentElement.lang = lang;
+        }
+
+        // Set language and persist to localStorage
+        function setLang(lang) {
+            if (LANGS.indexOf(lang) === -1) return;
+            localStorage.setItem('gs_lang', lang);
+            applyLang(lang);
+        }
+
+        // Detect language: localStorage > navigator.language > default
+        function detectLang() {
+            var saved = localStorage.getItem('gs_lang');
+            if (saved && LANGS.indexOf(saved) !== -1) return saved;
+            var nav = (navigator.language || '').toLowerCase();
+            if (nav.startsWith('ru')) return 'ru';
+            return DEFAULT_LANG;
+        }
+
+        // Initialise on page load
+        (function() {
+            applyLang(detectLang());
+        })();
+    </script>
 </body>
 </html>

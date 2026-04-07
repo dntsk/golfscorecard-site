@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golf Scorecard — Track your golf scores</title>
+  <meta name="description" content="Track your golf scores — fast, easy, no signup. Score tracking for 9 or 18 holes, up to 4 players." />
+
+  <style>
+    /* ============================================================
+       CSS Custom Properties — colors from style guide
+       ============================================================ */
+    :root {
+      --color-primary:    #2D6A4F;
+      --color-secondary:  #40916C;
+      --color-bg:         #FFFFFF;
+      --color-surface:    #F8F9FA;
+      --color-text:       #1A1A2E;
+      --color-text-muted: #6C757D;
+      --color-border:     #E2E8F0;
+
+      /* Spacing scale — multiples of 8px */
+      --sp-1:  8px;
+      --sp-2:  16px;
+      --sp-3:  24px;
+      --sp-4:  32px;
+      --sp-6:  48px;
+      --sp-8:  64px;
+      --sp-12: 96px;
+
+      /* Radii */
+      --radius-card:  12px;
+      --radius-phone: 16px;
+      --radius-btn:   10px;
+
+      /* Typography */
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* ============================================================
+       Reset & base
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       Layout helpers
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 var(--sp-3);
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-2) var(--sp-3);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+    }
+
+    .header-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .header-brand span {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.3px;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    .lang-switcher button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--color-text-muted);
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .lang-switcher button:hover {
+      color: var(--color-primary);
+      background: var(--color-surface);
+    }
+
+    .lang-switcher button.active {
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .lang-divider {
+      color: var(--color-border);
+      user-select: none;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      padding: var(--sp-12) var(--sp-3) var(--sp-8);
+      text-align: center;
+      background: linear-gradient(180deg, #F0F7F4 0%, #FFFFFF 100%);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      max-width: 680px;
+      margin: 0 auto var(--sp-2);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--color-primary);
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--color-text-muted);
+      max-width: 520px;
+      margin: 0 auto var(--sp-4);
+      line-height: 1.55;
+    }
+
+    /* App Store badge */
+    .appstore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-1);
+      background: var(--color-text);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.15s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .appstore-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* Apple badge SVG wrapper */
+    .appstore-badge {
+      display: inline-block;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .appstore-badge:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .appstore-badge svg {
+      height: 48px;
+      width: auto;
+    }
+
+    /* ============================================================
+       SCREENSHOTS
+       ============================================================ */
+    .screenshots-section {
+      padding: var(--sp-8) 0;
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+
+    .screenshots-section h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--sp-4);
+      letter-spacing: -0.3px;
+    }
+
+    /* Horizontal scrollable row */
+    .screenshots-scroll {
+      display: flex;
+      gap: var(--sp-3);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: var(--sp-2) var(--sp-3) var(--sp-3);
+      justify-content: safe center;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .screenshots-scroll::-webkit-scrollbar { display: none; }
+
+    /* CSS iPhone frame */
+    .phone-frame {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: 160px;
+      /* Approx 9:19.5 aspect ratio (iPhone) */
+      height: 346px;
+      border-radius: var(--radius-phone);
+      border: 3px solid #1A1A2E;
+      box-shadow:
+        0 2px 0 0 #1A1A2E,          /* bottom edge emphasis */
+        0 12px 32px rgba(0,0,0,0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.08);
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .phone-frame:hover { transform: translateY(-4px) scale(1.02); }
+
+    /* Notch hint at top */
+    .phone-frame::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 6px;
+      background: #1A1A2E;
+      border-radius: 3px;
+      z-index: 2;
+    }
+
+    .phone-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: calc(var(--radius-phone) - 3px);
+    }
+
+    /* Desktop: center row without overflow */
+    @media (min-width: 900px) {
+      .screenshots-scroll {
+        flex-wrap: nowrap;
+        overflow-x: visible;
+        padding-left: var(--sp-3);
+        padding-right: var(--sp-3);
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .phone-frame { width: 152px; height: 328px; }
+    }
+
+    /* ============================================================
+       FEATURES
+       ============================================================ */
+    .features-section {
+      padding: var(--sp-8) var(--sp-3);
+      background: var(--color-bg);
+    }
+
+    .features-section h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--sp-4);
+      letter-spacing: -0.3px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-2);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 600px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .feature-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: var(--sp-3) var(--sp-2);
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 4px 16px rgba(45, 106, 79, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: var(--sp-1);
+    }
+
+    .feature-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      padding: var(--sp-4) var(--sp-3);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-2);
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--color-primary); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Brand: icon + name -->
+      <div class="header-brand">
+        <img src="icon.png" alt="Golf Scorecard icon" />
+        <span>Golf Scorecard</span>
+      </div>
+
+      <!-- Language switcher -->
+      <div class="lang-switcher" role="group" aria-label="Language selector">
+        <button id="btn-en" class="active" onclick="setLang('en')" aria-label="English">EN</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button id="btn-ru" onclick="setLang('ru')" aria-label="Русский">RU</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="container">
+
+      <h1>
+        <span class="i18n" data-en="Track your golf scores —" data-ru="Ведите счёт в гольфе —"></span>
+        <br />
+        <em><span class="i18n" data-en="fast, easy, no signup" data-ru="быстро, просто, без регистрации"></span></em>
+      </h1>
+
+      <p class="i18n"
+         data-en="Score tracking for 9 or 18 holes, up to 4 players. All data stays on your device."
+         data-ru="Счёт на 9 или 18 лунок, до 4 игроков. Все данные остаются на вашем устройстве.">
+      </p>
+
+      <!-- Official Apple App Store badge -->
+      <a class="appstore-badge" href="#" aria-label="Download on the App Store">
+        <img src="appstore-badge.svg" alt="Download on the App Store" height="48" />
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREENSHOTS
+       ============================================================ -->
+  <section class="screenshots-section">
+    <h2 class="i18n" data-en="See it in action" data-ru="Как это выглядит"></h2>
+
+    <div class="screenshots-scroll" role="list" aria-label="App screenshots">
+
+      <div class="phone-frame" role="listitem">
+        <img src="screenshots/01-home.png" alt="Home screen" loading="lazy" />
+      </div>
+
+      <div class="phone-frame" role="listitem">
+        <img src="screenshots/02-stats.png" alt="Statistics screen" loading="lazy" />
+      </div>
+
+      <div class="phone-frame" role="listitem">
+        <img src="screenshots/03-scorecard.png" alt="Scorecard screen" loading="lazy" />
+      </div>
+
+      <div class="phone-frame" role="listitem">
+        <img src="screenshots/04-new-round.png" alt="New round screen" loading="lazy" />
+      </div>
+
+      <div class="phone-frame" role="listitem">
+        <img src="screenshots/05-settings.png" alt="Settings screen" loading="lazy" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES
+       ============================================================ -->
+  <section class="features-section">
+    <h2 class="i18n" data-en="Everything you need" data-ru="Всё, что нужно"></h2>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">⛳</div>
+        <div class="feature-label i18n"
+             data-en="9 or 18 holes"
+             data-ru="9 или 18 лунок"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <div class="feature-label i18n"
+             data-en="Up to 4 players"
+             data-ru="До 4 игроков"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-label i18n"
+             data-en="Color-coded scores"
+             data-ru="Цветовая кодировка"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-label i18n"
+             data-en="Round history &amp; stats"
+             data-ru="История и статистика"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="https://dntsk.github.io/golfscorecard-legal/"
+         class="i18n"
+         data-en="Privacy Policy"
+         data-ru="Политика конфиденциальности"
+         target="_blank"
+         rel="noopener noreferrer"></a>
+      <a href="/support"
+         class="i18n"
+         data-en="Support"
+         data-ru="Поддержка"></a>
+    </nav>
+    <p class="footer-copy">© 2026 Golf Scorecard</p>
+  </footer>
+
+  <!-- ============================================================
+       i18n — language switching
+       ============================================================ -->
+  <script>
+    // Storage key for language preference
+    const LANG_KEY = 'gs_lang';
+
+    /**
+     * Apply the selected language to all elements with class "i18n".
+     * Each such element must have data-en and data-ru attributes.
+     * @param {string} lang - "en" or "ru"
+     */
+    function applyLang(lang) {
+      document.querySelectorAll('.i18n').forEach(function(el) {
+        var text = el.getAttribute('data-' + lang);
+        if (text !== null) el.textContent = text;
+      });
+
+      // Update <html lang> attribute for accessibility
+      document.documentElement.lang = lang;
+
+      // Update active state on switcher buttons
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+    }
+
+    /**
+     * Set language, persist to localStorage, and re-render page copy.
+     * @param {string} lang - "en" or "ru"
+     */
+    function setLang(lang) {
+      localStorage.setItem(LANG_KEY, lang);
+      applyLang(lang);
+    }
+
+    /**
+     * Detect preferred language:
+     * 1. localStorage (user's explicit choice)
+     * 2. navigator.language (browser preference)
+     * 3. Default to "en"
+     * @returns {string} "en" or "ru"
+     */
+    function detectLang() {
+      var stored = localStorage.getItem(LANG_KEY);
+      if (stored === 'en' || stored === 'ru') return stored;
+
+      var nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (nav.startsWith('ru')) return 'ru';
+
+      return 'en';
+    }
+
+    // Initialise on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+      applyLang(detectLang());
+    });
+  </script>
+
+</body>
+</html>

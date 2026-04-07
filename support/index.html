@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Scorecard — Support</title>
+    <style>
+        /* Reset and base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #FFFFFF;
+            color: #1A1A2E;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid #E9ECEF;
+            padding: 16px 24px;
+        }
+
+        .header-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #2D6A4F;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Language switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-family: inherit;
+            color: #6C757D;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .lang-btn:hover {
+            background: #F8F9FA;
+            color: #1A1A2E;
+        }
+
+        .lang-btn.active {
+            color: #2D6A4F;
+            font-weight: 600;
+        }
+
+        .lang-sep {
+            color: #DEE2E6;
+            font-size: 0.875rem;
+            user-select: none;
+        }
+
+        /* Main content */
+        main {
+            flex: 1;
+            padding: 48px 24px;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2D6A4F;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.0625rem;
+            color: #6C757D;
+            margin-bottom: 40px;
+        }
+
+        /* Support cards */
+        .support-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .support-card {
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .support-card h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1A1A2E;
+            margin-bottom: 8px;
+        }
+
+        .support-card p {
+            font-size: 0.9375rem;
+            color: #6C757D;
+            margin-bottom: 16px;
+        }
+
+        .support-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #2D6A4F;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            border: 1.5px solid #2D6A4F;
+            border-radius: 4px;
+            padding: 8px 16px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .support-link:hover {
+            background: #2D6A4F;
+            color: #FFFFFF;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #E9ECEF;
+            padding: 24px;
+        }
+
+        .footer-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6C757D;
+            font-size: 0.875rem;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover {
+            color: #2D6A4F;
+        }
+
+        .footer-copy {
+            font-size: 0.875rem;
+            color: #6C757D;
+        }
+
+        /* Responsive: stack footer on very small screens */
+        @media (max-width: 400px) {
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            h1 {
+                font-size: 1.625rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with logo and language switcher -->
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo">Golf Scorecard</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+                <span class="lang-sep">|</span>
+                <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main support content -->
+    <main>
+        <div class="content">
+            <h1 data-en="Support" data-ru="Поддержка"></h1>
+            <p class="subtitle"
+               data-en="Found a bug or have a question? We're here to help."
+               data-ru="Нашли ошибку или есть вопрос? Мы поможем."></p>
+
+            <div class="support-options">
+
+                <!-- GitHub issues card -->
+                <div class="support-card">
+                    <h2 data-en="Report a Bug" data-ru="Сообщить об ошибке"></h2>
+                    <p data-en="Open an issue on GitHub — describe what happened and we'll look into it."
+                       data-ru="Откройте задачу на GitHub — опишите проблему, и мы разберёмся."></p>
+                    <a href="https://github.com/dntsk/golfscorecard-legal/issues"
+                       class="support-link"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-en="Report an issue on GitHub"
+                       data-ru="Сообщить о проблеме на GitHub"></a>
+                </div>
+
+                <!-- Email card -->
+                <div class="support-card">
+                    <h2 data-en="Email Us" data-ru="Написать нам"></h2>
+                    <p data-en="Or email us at" data-ru="Или напишите нам"></p>
+                    <a href="mailto:info@dntsk.dev" class="support-link">info@dntsk.dev</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with links and copyright -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://dntsk.github.io/golfscorecard-legal/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   data-en="Privacy Policy"
+                   data-ru="Политика конфиденциальности"></a>
+                <a href="/"
+                   data-en="Home"
+                   data-ru="Главная"></a>
+            </div>
+            <span class="footer-copy">© 2026 Golf Scorecard</span>
+        </div>
+    </footer>
+
+    <script>
+        // Supported languages
+        var LANGS = ['en', 'ru'];
+        var DEFAULT_LANG = 'en';
+
+        // Apply language to all elements with data-en / data-ru attributes
+        function applyLang(lang) {
+            var els = document.querySelectorAll('[data-en]');
+            els.forEach(function(el) {
+                var text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
+
+            // Update active button state
+            LANGS.forEach(function(l) {
+                var btn = document.getElementById('btn-' + l);
+                if (btn) btn.classList.toggle('active', l === lang);
+            });
+
+            // Update html lang attribute for accessibility
+            document.documentElement.lang = lang;
+        }
+
+        // Set language, persist to localStorage
+        function setLang(lang) {
+            if (LANGS.indexOf(lang) === -1) return;
+            localStorage.setItem('gs_lang', lang);
+            applyLang(lang);
+        }
+
+        // Detect language: localStorage > navigator.language > default
+        function detectLang() {
+            var saved = localStorage.getItem('gs_lang');
+            if (saved && LANGS.indexOf(saved) !== -1) return saved;
+            var nav = (navigator.language || '').toLowerCase();
+            if (nav.startsWith('ru')) return 'ru';
+            return DEFAULT_LANG;
+        }
+
+        // Initialise on page load
+        (function() {
+            applyLang(detectLang());
+        })();
+    </script>
+
+</body>
+</html>

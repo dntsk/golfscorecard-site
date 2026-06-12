@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Scorecard — Terms of Use</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        /* Header */
+        .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid #E9ECEF; }
+        .header-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+        .header-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .header-brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+        .header-brand span { font-size: 17px; font-weight: 600; color: #1a1a2e; letter-spacing: -0.3px; }
+        /* Language switcher */
+        .lang-switcher { display: flex; gap: 4px; align-items: center; }
+        .lang-btn { background: none; border: none; cursor: pointer; font-size: 0.875rem; font-family: inherit; color: #6C757D; padding: 4px 6px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+        .lang-btn:hover { background: #F8F9FA; color: #1A1A2E; }
+        .lang-btn.active { color: #2D6A4F; font-weight: 600; }
+        .lang-sep { color: #DEE2E6; font-size: 0.875rem; user-select: none; }
+        /* Content */
+        .content { max-width: 720px; margin: 0 auto; padding: 24px; }
+        h1 { color: #2D6A4F; }
+        h2 { color: #40916C; margin-top: 2em; }
+        h3 { color: #1a1a2e; margin-top: 1.5em; }
+        p { margin: 0.8em 0; }
+        ul { margin: 0.8em 0; padding-left: 1.5em; }
+        .date { color: #6c757d; }
+        .content a { color: #2D6A4F; text-decoration: underline; }
+        /* Footer */
+        .site-footer { border-top: 1px solid #E9ECEF; padding: 24px; text-align: center; margin-top: 3em; }
+        .site-footer a { color: #6c757d; text-decoration: none; font-size: 0.875rem; margin: 0 12px; }
+        .site-footer a:hover { color: #2D6A4F; }
+        .footer-copy { font-size: 0.875rem; color: #6c757d; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <!-- Header with logo and language switcher -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="header-brand">
+                <img src="/icon.png" alt="Golf Scorecard icon" />
+                <span>Golf Scorecard</span>
+            </a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+                <span class="lang-sep">|</span>
+                <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h1 data-en="Terms of Use"
+            data-ru="Условия использования"></h1>
+        <p class="date"
+           data-en="Last updated: June 12, 2026"
+           data-ru="Последнее обновление: 12 июня 2026"></p>
+
+        <h2 data-en="Overview"
+            data-ru="Обзор"></h2>
+        <p data-en='These Terms of Use apply to Golf Scorecard and Golf Scorecard PRO (the "App"), developed by DNTSK. By using the App or purchasing PRO access, you agree to these Terms.'
+           data-ru="Эти Условия использования применяются к Golf Scorecard и Golf Scorecard PRO («Приложение»), разработанному DNTSK. Используя Приложение или покупая PRO-доступ, вы соглашаетесь с этими Условиями."></p>
+        <p data-en="If you do not agree with these Terms, do not use the App or purchase PRO access."
+           data-ru="Если вы не согласны с этими Условиями, не используйте Приложение и не покупайте PRO-доступ."></p>
+
+        <h2 data-en="Apple Standard EULA"
+            data-ru="Стандартное лицензионное соглашение Apple"></h2>
+        <p class="i18n-html"
+           data-en='The App is licensed, not sold, and your use of the App is also subject to the <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Apple Standard EULA</a>. These Terms supplement the Apple Standard EULA for App Store distribution.'
+           data-ru='Приложение предоставляется по лицензии, а не продаётся. Использование Приложения также регулируется <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">стандартным лицензионным соглашением Apple</a>. Эти Условия дополняют стандартное лицензионное соглашение Apple для распространения через App Store.'></p>
+
+        <h2 data-en="Golf Scorecard PRO"
+            data-ru="Golf Scorecard PRO"></h2>
+        <p data-en="Golf Scorecard PRO unlocks additional app features. PRO access is offered through Apple in-app purchases and does not require a DNTSK account."
+           data-ru="Golf Scorecard PRO разблокирует дополнительные функции приложения. PRO-доступ предлагается через встроенные покупки Apple и не требует аккаунта DNTSK."></p>
+        <p data-en="Available features, prices, and eligibility may vary by country or App Store storefront and are shown in the App before purchase."
+           data-ru="Доступные функции, цены и условия могут отличаться в зависимости от страны или витрины App Store и показываются в Приложении перед покупкой."></p>
+
+        <h2 data-en="Yearly Auto-Renewable Subscription"
+            data-ru="Годовая автопродлеваемая подписка"></h2>
+        <ul>
+            <li data-en="Golf Scorecard PRO Yearly is an auto-renewable subscription with a yearly billing period."
+                data-ru="Golf Scorecard PRO Yearly — это автопродлеваемая подписка с годовым периодом оплаты."></li>
+            <li data-en="Payment is charged to your Apple ID account when you confirm the purchase."
+                data-ru="Платёж списывается с вашего аккаунта Apple ID при подтверждении покупки."></li>
+            <li data-en="The subscription automatically renews unless you cancel it at least 24 hours before the end of the current period."
+                data-ru="Подписка автоматически продлевается, если вы не отмените её минимум за 24 часа до окончания текущего периода."></li>
+            <li data-en="Your Apple ID account may be charged for renewal within 24 hours before the end of the current period."
+                data-ru="С вашего аккаунта Apple ID может быть списана плата за продление в течение 24 часов до окончания текущего периода."></li>
+            <li data-en="You can manage or cancel the subscription in your Apple account settings or App Store subscription settings."
+                data-ru="Вы можете управлять подпиской или отменить её в настройках аккаунта Apple или в настройках подписок App Store."></li>
+        </ul>
+
+        <h2 data-en="Lifetime Non-Consumable Purchase"
+            data-ru="Пожизненная непотребляемая покупка"></h2>
+        <ul>
+            <li data-en="Golf Scorecard PRO Lifetime is a one-time non-consumable in-app purchase."
+                data-ru="Golf Scorecard PRO Lifetime — это разовая непотребляемая встроенная покупка."></li>
+            <li data-en="It does not renew and has no recurring subscription fee."
+                data-ru="Она не продлевается и не имеет регулярной платы за подписку."></li>
+            <li data-en="The purchase is associated with the Apple ID used for the transaction and can be restored through App Store purchase restoration where available."
+                data-ru="Покупка привязана к Apple ID, использованному для транзакции, и может быть восстановлена через восстановление покупок App Store, где это доступно."></li>
+            <li data-en="Lifetime access means access to the PRO features of the App for as long as DNTSK makes the App available and supported, subject to these Terms and App Store policies."
+                data-ru="Пожизненный доступ означает доступ к PRO-функциям Приложения в течение срока, пока DNTSK предоставляет и поддерживает Приложение, с учётом этих Условий и правил App Store."></li>
+        </ul>
+
+        <h2 data-en="Billing, Cancellations, and Refunds"
+            data-ru="Оплата, отмена и возвраты"></h2>
+        <p data-en="All purchases, subscription billing, cancellations, and refunds are handled by Apple through the App Store. DNTSK cannot cancel a subscription or issue an App Store refund directly."
+           data-ru="Все покупки, списания по подписке, отмены и возвраты обрабатываются Apple через App Store. DNTSK не может напрямую отменить подписку или оформить возврат App Store."></p>
+        <p data-en="To manage or cancel a subscription, open your Apple account settings and review your App Store subscriptions."
+           data-ru="Чтобы управлять подпиской или отменить её, откройте настройки аккаунта Apple и проверьте подписки App Store."></p>
+
+        <h2 data-en="Local Data, Backups, and External Links"
+            data-ru="Локальные данные, резервные копии и внешние ссылки"></h2>
+        <p data-en="The App stores scorecard data locally on your device and does not send scorecard data automatically to DNTSK servers. If you export a local JSON backup through the iOS share sheet, the destination app or service you choose may receive and process that file under its own terms and privacy policy."
+           data-ru="Приложение хранит данные карточек счёта локально на вашем устройстве и не отправляет их автоматически на серверы DNTSK. Если вы экспортируете локальную резервную копию JSON через iOS share sheet, выбранное вами приложение или сервис назначения может получить и обработать этот файл согласно своим условиям и политике конфиденциальности."></p>
+        <p data-en="First-party promotional links may open external websites or apps. Those destinations are governed by their own terms and privacy policies."
+           data-ru="Собственные промо-ссылки могут открывать внешние сайты или приложения. Такие места назначения регулируются собственными условиями и политиками конфиденциальности."></p>
+
+        <h2 data-en="Changes to These Terms"
+            data-ru="Изменения в Условиях"></h2>
+        <p data-en="We may update these Terms from time to time. Changes will be reflected on this page with an updated Last updated date. Continued use of the App after changes constitutes acceptance of the updated Terms."
+           data-ru="Мы можем время от времени обновлять эти Условия. Изменения будут отражены на этой странице с обновлённой датой последнего изменения. Продолжение использования Приложения после изменений означает принятие обновлённых Условий."></p>
+
+        <h2 data-en="Contact"
+            data-ru="Контакты"></h2>
+        <p data-en="If you have questions about these Terms, contact us at:"
+           data-ru="Если у вас есть вопросы об этих Условиях, свяжитесь с нами:"></p>
+        <p>Email: <a href="mailto:info@dntsk.dev">info@dntsk.dev</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div>
+            <a href="/"
+               data-en="Home"
+               data-ru="Главная"></a>
+            <a href="/privacy/"
+               data-en="Privacy Policy"
+               data-ru="Политика конфиденциальности"></a>
+            <a href="/support/"
+               data-en="Support"
+               data-ru="Поддержка"></a>
+        </div>
+        <p class="footer-copy">© 2026 Golf Scorecard</p>
+    </footer>
+
+    <script>
+        // Supported languages
+        var LANGS = ['en', 'ru'];
+        var DEFAULT_LANG = 'en';
+
+        // Apply language to all translatable elements
+        function applyLang(lang) {
+            // Plain text elements
+            var els = document.querySelectorAll('[data-en]');
+            els.forEach(function(el) {
+                var text = el.getAttribute('data-' + lang);
+                if (!text) return;
+                // Use innerHTML for elements that contain markup
+                if (el.classList.contains('i18n-html')) {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            // Update active button state
+            LANGS.forEach(function(l) {
+                var btn = document.getElementById('btn-' + l);
+                if (btn) btn.classList.toggle('active', l === lang);
+            });
+
+            // Update html lang attribute for accessibility
+            document.documentElement.lang = lang;
+        }
+
+        // Set language and persist to localStorage
+        function setLang(lang) {
+            if (LANGS.indexOf(lang) === -1) return;
+            localStorage.setItem('gs_lang', lang);
+            applyLang(lang);
+        }
+
+        // Detect language: localStorage > navigator.language > default
+        function detectLang() {
+            var saved = localStorage.getItem('gs_lang');
+            if (saved && LANGS.indexOf(saved) !== -1) return saved;
+            var nav = (navigator.language || '').toLowerCase();
+            if (nav.startsWith('ru')) return 'ru';
+            return DEFAULT_LANG;
+        }
+
+        // Initialise on page load
+        (function() {
+            applyLang(detectLang());
+        })();
+    </script>
+</body>
+</html>
